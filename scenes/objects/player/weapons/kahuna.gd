@@ -13,17 +13,20 @@ func _process(_delta):
 			fireable = false
 			SoundManager.play("kahuna", "fire")
 			anim.play("Fire")
-			fire_hitscan(12, 5 + (spread*0.4), 5 + (spread*0.4), 10, "Shotgun")
+			fire_hitscan(12, Vector2(5 + (spread*0.4), 5 + (spread*0.4)), 10, "Shotgun")
 			await anim.animation_finished
-			SoundManager.play("kahuna", "pump")
 			anim.play("Pump")
 			await anim.animation_finished
+			SoundManager.play("kahuna", "pump_in")
+			anim.play("Pump_out")
+			await anim.animation_finished
+			SoundManager.play("kahuna", "pump_out")
 			fireable = true
 		elif Input.is_action_pressed("altfire"): # Secondary fire
 			fireable = false
 			SoundManager.play("kahuna", "fire")
 			anim.play("Fire")
-			fire_hitscan(12, 4 + (spread*0.8), 4 + (spread*0.8), 11, "Shotgun")
+			fire_hitscan(12, Vector2(4 + (spread*0.8), 4 + (spread*0.8)), 11, "Shotgun")
 			spread += 2
 			await anim.animation_finished
 			anim.play("Spin")
@@ -33,9 +36,12 @@ func _process(_delta):
 			if Input.is_action_pressed("altfire"):
 				fireable = true
 			else:
-				SoundManager.play("kahuna", "pump")
-				anim.play("Pump")
+				anim.play("Pump") # Why does it not recognize that the animation is named "Pump_in"?
 				await anim.animation_finished
+				SoundManager.play("kahuna", "pump_in")
+				anim.play("Pump_out")
+				await anim.animation_finished
+				SoundManager.play("kahuna", "pump_out")
 				fireable = true
 		else: # Idling
 			if spread > 0:

@@ -6,7 +6,7 @@ func _process(_delta):
 			fireable = false
 			SoundManager.play("evening_star", "fire")
 			anim.play("Fire")
-			fire_projectile()
+			fire_projectile(preload("res://scenes/objects/player/weapons/projectiles/generic_projectile.tscn"), 1)
 			await anim.animation_finished
 			fireable = true
 		else: # Idling

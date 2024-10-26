@@ -39,12 +39,12 @@ func deselect_weapon() -> void:
 	lowering = false
 
 ## Fires a hitscan attack where [code]raycast[/code] is pointing.
-func fire_hitscan(pellets: int, spread_h: float, spread_v: float, damage: int, damageType: String = "None", bulletPuff: PackedScene = preload("res://scenes/effects/impact.tscn")):
+func fire_hitscan(pellets: int, spread: Vector2, damage: int, damageType: String = "None", bulletPuff: PackedScene = preload("res://scenes/effects/impact.tscn")):
 	var target_pos = raycast.target_position
 	for n in pellets:
 		
-		raycast.target_position.z = raycast.target_position.z + randf_range(-spread_h, spread_h)
-		raycast.target_position.y = raycast.target_position.y + randf_range(-spread_v, spread_v)
+		raycast.target_position.z = raycast.target_position.z + randf_range(-spread.x, spread.x)
+		raycast.target_position.y = raycast.target_position.y + randf_range(-spread.y, spread.y)
 		
 		raycast.force_raycast_update()
 		
@@ -70,15 +70,13 @@ func fire_hitscan(pellets: int, spread_h: float, spread_v: float, damage: int, d
 # Reset one more time so you never fuck up where your raycast is pointing
 	raycast.target_position = target_pos
 
-func fire_projectile(projectile: PackedScene = preload("res://scenes/objects/player/weapons/projectiles/generic_projectile.tscn"), count: int = 1, spread_h: float = 0, spread_v: float = 0, offset_x: float = 0, offset_y: float = 0, offset_z: float = 0):
+func fire_projectile(projectile: PackedScene = preload("res://scenes/objects/player/weapons/projectiles/generic_projectile.tscn"), count: int = 1, spread = Vector2.ZERO, offset = Vector3.ZERO):
 	for n in count:
 		var projectile_instance = projectile.instantiate()
-
-		projectile_instance.rotation.y = camera.rotation.y + randf_range(-spread_h, spread_h)
-		projectile_instance.rotation.z = camera.rotation.z + randf_range(-spread_v, spread_v)
-	# i sincerely hope this is relative to the player, but if not it's not that big of a deal
-		projectile_instance.position.x = player.position.x + camera.position.x + offset_x
-		projectile_instance.position.y = player.position.y + camera.position.y + offset_y
-		projectile_instance.position.z = player.position.z + camera.position.z + offset_z
-		
 		get_tree().root.add_child(projectile_instance)
+
+		projectile_instance.global_position = camera.global_position
+		projectile_instance.position += offset
+
+		projectile_instance.rotate_z(player.transform.basis.z + randf_range(-spread.x, spread.x))
+		projectile_instance.rotate_y(camera.transform.basis.y + randf_range(-spread.y, spread.y))

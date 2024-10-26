@@ -6,7 +6,7 @@ func _process(_delta):
 			fireable = false
 			SoundManager.play("evening_star", "fire")
 			anim.play("Fire")
-			fire_hitscan(1, 5, 5, 10, "Plasma")
+			fire_hitscan(1, Vector2(5, 5), 10, "Plasma")
 			await anim.animation_finished
 			fireable = true
 		else: # Idling

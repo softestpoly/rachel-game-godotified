@@ -22,3 +22,5 @@ shape = SubResource("ConvexPolygonShape3D_uma0r")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 layers = 128
 mesh = SubResource("SphereMesh_imptk")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

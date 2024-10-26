@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://csg8tg2yc54a4"]
+[gd_scene load_steps=15 format=3 uid="uid://csg8tg2yc54a4"]
 
 [ext_resource type="Script" path="res://scenes/objects/player/weapons/kahuna.gd" id="1_cp3pv"]
 [ext_resource type="PackedScene" uid="uid://bw332l300yj51" path="res://models/Player/Weapons/Kahuna.blend" id="2_je16c"]
@@ -10,7 +10,6 @@
 [ext_resource type="AudioStream" uid="uid://hckekwau0uox" path="res://sounds/player/weapons/kahuna/Fire3.wav" id="8_auafg"]
 [ext_resource type="AudioStream" uid="uid://mj8rfl7ra344" path="res://sounds/player/weapons/kahuna/Pump1.wav" id="9_yc45x"]
 [ext_resource type="AudioStream" uid="uid://cnxacf4u51sbc" path="res://sounds/player/weapons/kahuna/Pump2.wav" id="10_e4six"]
-[ext_resource type="AudioStream" uid="uid://ddve3bllunqsn" path="res://sounds/player/weapons/kahuna/pickup.wav" id="11_ukvsi"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_030cb"]
 transparency = 1
@@ -41,14 +40,6 @@ volume = -8.0
 pitch = 1.0
 streams = Array[AudioStream]([ExtResource("10_e4six")])
 
-[sub_resource type="Resource" id="Resource_grkuv"]
-script = ExtResource("5_8tv5c")
-name = "pump"
-bus = ""
-volume = -8.0
-pitch = 1.0
-streams = Array[AudioStream]([ExtResource("11_ukvsi")])
-
 [node name="Kahuna" type="Node3D"]
 script = ExtResource("1_cp3pv")
 
@@ -69,10 +60,11 @@ bones/12/position = Vector3(0.421783, 0.126246, 0.223843)
 bones/12/rotation = Quaternion(-0.712759, -0.0671875, -0.23422, -0.657724)
 bones/12/scale = Vector3(1, 1, 1)
 bones/13/position = Vector3(0.00827814, 0.269039, -0.0529278)
-bones/13/rotation = Quaternion(-0.0828638, 0.742701, -0.038982, 0.663332)
+bones/13/rotation = Quaternion(-0.0829904, 0.742686, -0.0391021, 0.663326)
 bones/13/scale = Vector3(1, 1, 1)
-bones/14/rotation = Quaternion(-0.000150433, -0.0936788, -0.00558751, 0.995587)
-bones/15/rotation = Quaternion(0.00278932, -0.121406, 0.010817, 0.99254)
+bones/14/rotation = Quaternion(-0.000135564, -0.093679, -0.00515534, 0.995589)
+bones/14/scale = Vector3(1, 1, 1)
+bones/15/rotation = Quaternion(0.00271419, -0.121406, 0.0104556, 0.992544)
 bones/15/scale = Vector3(1, 1, 1)
 bones/16/rotation = Quaternion(0.0169527, -0.0274101, 0.125529, 0.991566)
 bones/17/rotation = Quaternion(-0.158007, -0.322132, -0.27815, 0.891009)
@@ -93,6 +85,7 @@ bones/25/rotation = Quaternion(-0.0285059, -0.0022923, 0.445993, 0.89458)
 bones/25/scale = Vector3(1, 1, 1)
 bones/27/rotation = Quaternion(-0.143039, 0.000239287, -0.0482749, 0.988539)
 bones/27/scale = Vector3(1, 1, 1)
+bones/28/rotation = Quaternion(-0.136478, -0.784147, -0.309839, 0.520084)
 bones/29/rotation = Quaternion(-0.136478, 0.784147, 0.309839, 0.520085)
 bones/29/scale = Vector3(1, 1, 1)
 bones/30/rotation = Quaternion(0.99189, 2.98045e-10, 2.36446e-07, 0.127096)
@@ -116,8 +109,8 @@ bones/40/rotation = Quaternion(-0.0129252, -0.00400175, 0.0193345, 0.999722)
 bones/41/rotation = Quaternion(0.707107, -4.73729e-07, -4.73853e-07, 0.707107)
 bones/43/position = Vector3(-7.45058e-09, 0.386875, 1.29645)
 bones/44/rotation = Quaternion(0.707107, -9.0413e-07, -7.19927e-07, 0.707107)
-bones/45/position = Vector3(-0.102649, 3.07044, 2.62001)
-bones/45/scale = Vector3(2, 2, 2)
+bones/45/position = Vector3(-0.124541, 3.07044, 2.43848)
+bones/45/scale = Vector3(0.1, 0.1, 0.1)
 
 [node name="arms" parent="Model/Gemini0/Skeleton3D" index="0"]
 layers = 64
@@ -195,7 +188,7 @@ autoplay = "Idle"
 [node name="SoundBank" type="Node" parent="."]
 script = ExtResource("4_q2psv")
 label = "kahuna"
-events = Array[ExtResource("5_8tv5c")]([SubResource("Resource_t7ux3"), SubResource("Resource_doacx"), SubResource("Resource_n3oay"), SubResource("Resource_grkuv")])
+events = Array[ExtResource("5_8tv5c")]([SubResource("Resource_t7ux3"), SubResource("Resource_doacx"), SubResource("Resource_n3oay")])
 
 [node name="kahunaTimer" type="Timer" parent="."]
 wait_time = 0.114
